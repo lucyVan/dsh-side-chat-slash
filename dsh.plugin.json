@@ -1,0 +1,17 @@
+{
+  "id": "dsh-side-chat-slash",
+  "version": "0.1.0",
+  "main": "./lib/index.js",
+  "description": "Side chat for the DSH Web GUI with a /side slash command. Fork of @flyer103/dsh-side-chat 0.7.0.",
+  "contributes": {
+    "tools": [],
+    "skills": []
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/lucyVan/dsh-side-chat-slash",
+  "forkedFrom": "https://github.com/flyer103/dsh-side-chat",
+  "testedWith": {
+    "dsh": "0.2.2-rc.1",
+    "note": "metadata only; DSH does not read this file"
+  }
+}
