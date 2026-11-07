@@ -59,7 +59,18 @@ dsh plugin --profile desktop add /absolute/path/to/dsh-side-chat-slash
 
 ## 兼容性
 
-在 DSH `0.2.2-rc.1`（Desktop profile，Web GUI）上验证：`/side` 命令可唤起、右栏 tab 正常打开、fork 与继承正常。原版声明的验证目标是 `0.2.1-rc.2`。
+| 项 | 状态 |
+|---|---|
+| DSH 版本 | 验证于 `0.2.2-rc.1`；`package.json` 声明 `engines.dsh: >=0.2.2-rc.1 <0.3.0-0`，不合规环境安装期即报错 |
+| 平台 | macOS 实测通过；Windows/Linux 未实测（代码无平台分支，理论上可用） |
+| 界面 | 仅 Web GUI（Desktop 窗口或 `dsh web`），无 CLI/TUI |
+| Node | `>= 22`（DSH 自带满足） |
+| npm 依赖 | **零依赖**：不 import 任何 `@deepseek-ai/*` 包 |
+| 浏览器模块依赖 | **零**：只 require `react`（外壳内置）与 `@deepseek-ai/dsh-client-ui-primitives`（平台种子表内置，含内置回退） |
+| 宿主服务 | 必需 `agents`/`webServer`/`timer`/`commands`；`agentPresets`/`sandboxPolicy`/`approval`/`fileReferences`/`sessionPersistence` 缺失时自动降级 |
+| 与原版共存 | **不可**同时安装原版 `@flyer103/dsh-side-chat`（同名路由与 tab 类型会冲突） |
+
+安装验证：在隔离 `DSH_HOME` 中用 `dsh plugin --profile web add github:lucyVan/dsh-side-chat-slash` 实测，依赖安装、bundle 登记、`--dump-config` 组装均正常。
 
 ## 卸载
 

@@ -59,7 +59,18 @@ The upstream entry point (the "Side chat" card on the right sidebar's guide page
 
 ## Compatibility
 
-Verified on DSH `0.2.2-rc.1` (Desktop profile, Web GUI): `/side` opens the tab and the fork inherits correctly. Upstream declares `0.2.1-rc.2` as its verified target.
+| Item | Status |
+|---|---|
+| DSH version | Verified on `0.2.2-rc.1`; `package.json` declares `engines.dsh: >=0.2.2-rc.1 <0.3.0-0`, so an incompatible host fails at install time instead of at runtime |
+| Platform | Tested on macOS; Windows/Linux untested (no platform-specific code, expected to work) |
+| UI | Web GUI only (Desktop window or `dsh web`); no CLI/TUI surface |
+| Node | `>= 22` (satisfied by DSH's bundled runtime) |
+| npm dependencies | **None**: imports no `@deepseek-ai/*` package |
+| Browser module dependencies | **None**: requires only `react` (shell-provided) and `@deepseek-ai/dsh-client-ui-primitives` (platform seed table, with a built-in fallback) |
+| Host services | Requires `agents`/`webServer`/`timer`/`commands`; degrades gracefully when `agentPresets`/`sandboxPolicy`/`approval`/`fileReferences`/`sessionPersistence` are absent |
+| Coexistence | **Cannot** be installed alongside upstream `@flyer103/dsh-side-chat` (duplicate routes and tab type) |
+
+Install verification: `dsh plugin --profile web add github:lucyVan/dsh-side-chat-slash` was run in an isolated `DSH_HOME`; dependency install, bundle registration and `--dump-config` composition all succeeded.
 
 ## Uninstall
 

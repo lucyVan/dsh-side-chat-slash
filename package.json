@@ -27,10 +27,6 @@
       "patch": "./cordis.patch.yml"
     },
     "client": {
-      "inject": [
-        "@deepseek-ai/dsh-client-ui-primitives",
-        "@deepseek-ai/dsh-client-locale"
-      ],
       "platform": "web"
     }
   },
@@ -54,7 +50,8 @@
     "url": "git+https://github.com/lucyVan/dsh-side-chat-slash.git"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22",
+    "dsh": ">=0.2.2-rc.1 <0.3.0-0"
   },
   "bugs": {
     "url": "https://github.com/lucyVan/dsh-side-chat-slash/issues"
