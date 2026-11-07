@@ -30,7 +30,9 @@ dsh plugin --profile desktop add github:lucyVan/dsh-side-chat-slash
 dsh plugin --profile desktop add /absolute/path/to/dsh-side-chat-slash
 ```
 
-安装后**重启 DSH**（Desktop 应用先 ⌘Q 再打开）。
+`--profile` 要选你实际运行的那一个：桌面应用用 `desktop`，自己起的 `dsh web` 进程用 `web`。
+
+安装后**重启 DSH**：桌面应用先 ⌘Q 完全退出再打开；`dsh web` 进程直接重启。
 
 ## 使用
 

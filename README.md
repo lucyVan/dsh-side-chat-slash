@@ -30,7 +30,9 @@ dsh plugin --profile desktop add github:lucyVan/dsh-side-chat-slash
 dsh plugin --profile desktop add /absolute/path/to/dsh-side-chat-slash
 ```
 
-Restart DSH afterwards (quit the Desktop app with ⌘Q, then reopen).
+`--profile` must name the profile you actually run: `desktop` for the Desktop app, `web` for a `dsh web` process.
+
+Restart DSH afterwards (quit the Desktop app with ⌘Q and reopen it; restart a `dsh web` process).
 
 ## Usage
 
