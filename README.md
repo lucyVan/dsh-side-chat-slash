@@ -63,7 +63,7 @@ The upstream entry point (the "Side chat" card on the right sidebar's guide page
 
 | Item | Status |
 |---|---|
-| DSH version | Verified on `0.2.2-rc.1`; `package.json` declares `engines.dsh: >=0.2.2-rc.1 <0.3.0-0`, so an incompatible host fails at install time instead of at runtime |
+| DSH version | Verified on `0.2.2-rc.1`; `package.json` declares `engines.dsh: >=0.2.2-rc.1 <0.3.0-0`, so an incompatible host fails at install time instead of at runtime; DSH rejects an incompatible host at install time |
 | Platform | Tested on macOS; Windows/Linux untested (no platform-specific code, expected to work) |
 | UI | Web GUI only (Desktop window or `dsh web`); no CLI/TUI surface |
 | Node | `>= 22` (satisfied by DSH's bundled runtime) |
@@ -71,6 +71,14 @@ The upstream entry point (the "Side chat" card on the right sidebar's guide page
 | Browser module dependencies | **None**: requires only `react` (shell-provided) and `@deepseek-ai/dsh-client-ui-primitives` (platform seed table, with a built-in fallback) |
 | Host services | Requires `agents`/`webServer`/`timer`/`commands`; degrades gracefully when `agentPresets`/`sandboxPolicy`/`approval`/`fileReferences`/`sessionPersistence` are absent |
 | Coexistence | **Cannot** be installed alongside upstream `@flyer103/dsh-side-chat` (duplicate routes and tab type) |
+
+> **After a DSH upgrade the plugin may refuse to install**: `engines.dsh` is enforced by DSH, which rejects an out-of-window host and explains that running it may crash or corrupt data. To try an unverified host anyway, use DSH's exact-version exemption:
+>
+> ```bash
+> dsh plugin --profile <name> allow-version <package>@<version> --dsh-version <host-version> --accept-risk
+> ```
+>
+> Back up your workspace first. The host APIs this plugin relies on (`ctx.commands.register`, the right-sidebar tabs, `agents.create`'s seed semantics) can still change between release candidates.
 
 Install verification: `dsh plugin --profile web add github:lucyVan/dsh-side-chat-slash` was run in an isolated `DSH_HOME`; dependency install, bundle registration and `--dump-config` composition all succeeded.
 
